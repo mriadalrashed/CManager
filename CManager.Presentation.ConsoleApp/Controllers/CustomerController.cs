@@ -151,14 +151,19 @@ namespace CManager.Presentation.ConsoleApp.Controllers
                 Console.WriteLine("---------------------------");
             }
             Console.WriteLine($"\nTotal Customers: {customers.Count}");
+
+            Pause();
         }
 
         private void ViewSpecificCustomer()
         {
+
             Console.Clear();
             Console.WriteLine("=== View Specific Customer ===");
             Console.Write("Enter customer email: ");
             var email = Console.ReadLine()?.Trim();
+
+           try { 
             // Validate email input
             if (string.IsNullOrEmpty(email))
             {
@@ -175,6 +180,18 @@ namespace CManager.Presentation.ConsoleApp.Controllers
                 Console.WriteLine("\nCustomer Found:");
                 DisplayCustomer(customer, true);
             }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError: {ex.Message}");
+            }
+
+            Pause();
+        }
+        private void Pause()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
         // Deletes a customer by email
         private void DeleteCustomer()
