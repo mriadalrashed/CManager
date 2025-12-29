@@ -11,7 +11,7 @@ namespace CManager.Infrastructure.Data
 
         // Path to the JSON data file
         private readonly string _filePath;
-
+        
         // Initializes repository and loads customers from file
         public CustomerRepository(string filePath)
         {
