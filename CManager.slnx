@@ -2,6 +2,5 @@
   <Project Path="CManager.Application/CManager.Application.csproj" />
   <Project Path="CManager.Core/CManager.Core.csproj" />
   <Project Path="CManager.Presentation.ConsoleApp/CManager.Presentation.ConsoleApp.csproj" Id="3ebc50f0-4909-4f63-94d7-d2e5fb19a8ed" />
-  <Project Path="CManager.Tests/CManager.Tests.csproj" Id="278617a5-562b-4880-8ab8-1ce3c07d4791" />
   <Project Path="CManger.Infrastructure/CManager.Infrastructure.csproj" />
 </Solution>

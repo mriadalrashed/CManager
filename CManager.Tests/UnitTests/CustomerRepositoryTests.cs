@@ -44,14 +44,14 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                firstName = "John",
-                lastName = "Doe",
-                email = "john.doe@gmail.com",
-                phoneNumber = "123-456-7890",
-                address = "123 Main St, Anytown, USA",
-                city = "Anytown",
-                street = "123 Main St",
-                postalCode = "33457"
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@gmail.com",
+                PhoneNumber = "123-456-7890",
+                Address = "123 Main St, Anytown, USA",
+                City = "Anytown",
+                Street = "123 Main St",
+                PostalCode = "33457"
             };
 
             // Act
@@ -130,14 +130,14 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                firstName = "Original Name",
-                lastName = "Name",
-                email = "original@gmail.com",
-                phoneNumber = "0",
-                address = "Original Address",
-                city = "Original City",
-                street = "0",
-                postalCode = "00000"
+                FirstName = "Original Name",
+                LastName = "Name",
+                Email = "original@gmail.com",
+                PhoneNumber = "0",
+                Address = "Original Address",
+                City = "Original City",
+                Street = "0",
+                PostalCode = "00000"
             };
 
             _repository.Add(customer);
@@ -147,14 +147,14 @@ namespace CManager.Tests.UnitTests
             var updatedCustomer = new Customer
             {
                 Id = customer.Id,
-                firstName = "Updated Name",
-                lastName = "Updated Name",
-                email = "original@gmail.com",
-                phoneNumber = "0",
-                address = "Updated Address",
-                city = "Updated City",
-                street = "0",
-                postalCode = "00000"
+                FirstName = "Updated Name",
+                LastName = "Updated Name",
+                Email = "original@gmail.com",
+                PhoneNumber = "0",
+                Address = "Updated Address",
+                City = "Updated City",
+                Street = "0",
+                PostalCode = "00000"
             };
 
             // Act
