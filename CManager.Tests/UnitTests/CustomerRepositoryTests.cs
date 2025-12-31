@@ -63,24 +63,24 @@ namespace CManager.Tests.UnitTests
             // verify that the customer was added successfully
             var customers = _repository.GetAll().ToList();
             Assert.Single(customers);
-            Assert.Equal("john.doe@gmail.com", customers[0].email);
+            Assert.Equal("john.doe@gmail.com", customers[0].Email);
         }
 
         [Fact]
-        public void GetEmail_ShouldReturnCorrectCustomer()
+        public void GetByEmail_ShouldReturnCorrectCustomer()
         {
             // Arrange
             // create two customers
             var customer1 = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "customer1@gmail.com"
+                Email = "customer1@gmail.com"
             };
 
             var customer2 = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "customer2@gmail.com"
+                Email = "customer2@gmail.com"
             };
 
             _repository.Add(customer1);
@@ -105,7 +105,7 @@ namespace CManager.Tests.UnitTests
             var customer = new Customer
             {
                 Id = Guid.NewGuid(),
-                email = "delete@gmail.com"
+                Email = "delete@gmail.com"
             };
 
             _repository.Add(customer);
@@ -168,14 +168,14 @@ namespace CManager.Tests.UnitTests
 
             var retrieved = _repository.GetByEmail("original@gmail.com");
             Assert.NotNull(retrieved);
-            Assert.Equal("Updated Name", retrieved.firstName);
-            Assert.Equal("Updated Name", retrieved.lastName);
-            Assert.Equal("original@gmail.com", retrieved.email);
-            Assert.Equal("Updated Address", retrieved.address);
-            Assert.Equal("Updated City", retrieved.city);
-            Assert.Equal("0", retrieved.phoneNumber);
-            Assert.Equal("0", retrieved.street);
-            Assert.Equal("00000", retrieved.postalCode);
+            Assert.Equal("Updated Name", retrieved.FirstName);
+            Assert.Equal("Updated Name", retrieved.LastName);
+            Assert.Equal("original@gmail.com", retrieved.Email);
+            Assert.Equal("Updated Address", retrieved.Address);
+            Assert.Equal("Updated City", retrieved.City);
+            Assert.Equal("0", retrieved.PhoneNumber);
+            Assert.Equal("0", retrieved.Street);
+            Assert.Equal("00000", retrieved.PostalCode);
         }
 
         [Fact]
@@ -188,7 +188,7 @@ namespace CManager.Tests.UnitTests
                 _repository.Add(new Customer
                 {
                     Id = Guid.NewGuid(),
-                    email = $"test{i}@example.com"
+                    Email = $"test{i}@example.com"
                 });
             }
 
