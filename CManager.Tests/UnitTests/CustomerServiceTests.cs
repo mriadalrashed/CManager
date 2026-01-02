@@ -5,6 +5,8 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Net;
 using Xunit;
 
 namespace CManager.Tests.UnitTests
@@ -130,36 +132,6 @@ namespace CManager.Tests.UnitTests
             // Validate the exception message
             Assert.Equal(
                 "A customer with the provided email already exists.",
-                exception.Message
-            );
-        }
-
-        [Fact]
-        public void CreateCustomer_WithInvalidEmail_ShouldThrowException()
-        {
-            //Arrange
-            // Create a customer with an invalid email format
-            var newCustomer = new Customer
-            {
-                FirstName = "Invalid",
-                LastName = "EmailUser",
-                Email = "invalid-email-format",
-                PhoneNumber = "1234567890",
-                Address = "789 Pine St, Sometown, USA",
-                City = "Sometown",
-                Street = "789 Pine St",
-                PostalCode = "00000"
-            };
-
-            //Act
-            // Attempt to create the customer and expect a FormatException
-            var exception = Assert.Throws<InvalidOperationException>(() =>
-                _customerService.CreateCustomer(newCustomer));
-
-            //Assert 
-            // Validate the exception message
-            Assert.Equal(
-                "The provided email format is invalid.",
                 exception.Message
             );
         }

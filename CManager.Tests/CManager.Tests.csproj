@@ -16,12 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+    <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
     <ProjectReference Include="..\CManager.Core\CManager.Core.csproj" />
     <ProjectReference Include="..\CManger.Infrastructure\CManager.Infrastructure.csproj" />
-=======
-    <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
->>>>>>> feature/unit-tests
   </ItemGroup>
 
   <ItemGroup>
