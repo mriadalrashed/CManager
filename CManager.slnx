@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="CManager.Application/CManager.Application.csproj" />
+  <Project Path="CManager.Core/CManager.Core.csproj" />
+  <Project Path="CManager.Presentation.ConsoleApp/CManager.Presentation.ConsoleApp.csproj" Id="3ebc50f0-4909-4f63-94d7-d2e5fb19a8ed" />
+  <Project Path="CManager.Presentation.GuiApp/CManager.Presentation.GuiApp.csproj" Id="d8a92d84-a0d0-4f99-b980-d5757778dd40" />
+  <Project Path="CManager.Tests/CManager.Tests.csproj" Id="3d57560d-859a-4b7f-a728-d3c9d0956d55" />
+  <Project Path="CManger.Infrastructure/CManager.Infrastructure.csproj" />
+</Solution>
