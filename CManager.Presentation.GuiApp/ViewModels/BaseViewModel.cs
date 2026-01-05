@@ -20,7 +20,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
         }
 
         // shows a success message
-        protected void showSuccess(string message)
+        protected void ShowSuccess(string message)
         {
             _statutsMessage = $"Success: {message}";
         }
