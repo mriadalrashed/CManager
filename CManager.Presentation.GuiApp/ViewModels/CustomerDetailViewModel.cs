@@ -52,8 +52,8 @@ namespace CManager.Presentation.GuiApp.ViewModels
         // load customer Data for  editing
         public void LoadCustomer(Guid customerId)
         {
-            _customerId = customer.Id;
-            if (customer == Guid.Empty)
+            _customerId = customerId;
+            if (customerId == Guid.Empty)
             {
                 Title = "Creat New Customer";
                 ClearForm();
