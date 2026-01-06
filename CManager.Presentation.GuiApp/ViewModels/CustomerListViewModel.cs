@@ -30,17 +30,17 @@ namespace CManager.Presentation.GuiApp.ViewModels
             _customerService = customerService;
             _navigationService = navigationService;
             Title = "Customers List";
-        }
 
-        //load customers from the service
-        LoadCustomer();
+            //load customers from the service
+            LoadCustomer();
+        }
 
         //load all customers from the service
         [RelayCommand]
         private void LoadCustomer()
         {
             IsBusy = true;
-            statusMessage = "Loading customers...";
+            StatutsMessage = "Loading customers...";
             try
             {
                 Customers.Clear();
@@ -71,7 +71,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
             if (SelectedCustomer == null)
                 return;
             IsBusy = true;
-            statusMessage = "Deleting customer...";
+            StatutsMessage = "Deleting customer...";
             try
             {
                 var success = _customerService.DeleteCustomerByEmail(SelectedCustomer.Email);
