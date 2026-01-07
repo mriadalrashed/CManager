@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CManager.Application.Services;
+using CManager.Core.Interfaces;
+using CManager.Infrastructure.Data;
+using CManager.Presentation.GuiApp.Services;
+using CManager.Presentation.GuiApp.ViewModels;
+using CManager.Presentation.GuiApp.Views;
+using System;
 using System.IO;
 using System.Windows;
-using CManager.Application.Services;
-using CManager.Infrastructure.Data;
-using CManager.Presentation.GuiApp.ViewModels;
-using CManager.Presentation.GuiApp.Services;
-using CManager.Presentation.GuiApp.Views;
 
 namespace CManager.Presentation.GuiApp
 {

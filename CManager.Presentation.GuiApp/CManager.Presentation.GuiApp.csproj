@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
     <ProjectReference Include="..\CManager.Core\CManager.Core.csproj" />
+    <ProjectReference Include="..\CManger.Infrastructure\CManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
