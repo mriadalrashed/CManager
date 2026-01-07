@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.CManager.Presentation.GuiApp.Views;
-using System.CManager.Presentation.GuiApp.ViewModels;
+using CManager.Presentation.GuiApp.Views;
 using CManager.Presentation.GuiApp.ViewModels;
 
 namespace CManager.Presentation.GuiApp.Services
