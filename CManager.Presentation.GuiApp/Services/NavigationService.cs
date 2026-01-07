@@ -18,7 +18,7 @@ namespace CManager.Presentation.GuiApp.Services
             _customerDetailViewModel = customerDetailViewModel;
         }
 
-        public void Initialize(ContentControl mainContentControl)
+        public void SetContentControl(ContentControl mainContentControl)
         {
             _mainContentControl = mainContentControl;
             NavigateToCustomerList();
@@ -46,7 +46,7 @@ namespace CManager.Presentation.GuiApp.Services
             _customerDetailViewModel.LoadCustomerCommand.Execute(null);
         }
 
-        public void NavigateToCreatCustome()
+        public void NavigateToCreateCustomer()
         {
             if (_mainContentControl == null)
                 return;
