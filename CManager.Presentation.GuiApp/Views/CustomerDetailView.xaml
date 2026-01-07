@@ -16,7 +16,7 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5,0,0,0"/>
-            <Setter Property="Width" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         
@@ -36,8 +36,11 @@
                    Text="{Binding StatusMessage}" 
                    FontStyle="Italic" 
                    Foreground="Red" 
-                   Margin="0,40,0,20"/>
-
+                   Margin="0,5,0,5"/>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+ 
         <StackPanel Grid.Row="1">
             <Grid Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
@@ -110,7 +113,7 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Street:" Margin="50,0,45,1" VerticalAlignment="Bottom"/>
+                <TextBlock Text="Street:" />
                 <TextBox Grid.Column="1"
                          Text="{Binding Street,
                          UpdateSourceTrigger=PropertyChanged}"/>
@@ -128,6 +131,7 @@
             </Grid>
 
         </StackPanel>
+        </ScrollViewer>
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
