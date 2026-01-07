@@ -8,6 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="10,5"/>
@@ -42,7 +43,7 @@
                     Height="20" 
                     Margin="10,0,0,0"
                     IsIndeterminate="{Binding IsBusy}"
-                    Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StackPanel>
         </Border>
         
@@ -51,7 +52,7 @@
                       Margin="0,35,20,21"
                       ItemsSource="{Binding Customers}"
                       SelectedItem="{Binding SelectedCustomer}"
-                      Grid.RowSpan="2">
+                      Grid.RowSpan="2" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="FirstName" Width="200" DisplayMemberBinding="{Binding FirstName}"/>
