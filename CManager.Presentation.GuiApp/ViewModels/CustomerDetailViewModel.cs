@@ -50,6 +50,8 @@ namespace CManager.Presentation.GuiApp.ViewModels
         }
 
         // load customer Data for  editing
+
+        [RelayCommand]
         public void LoadCustomer(Guid customerId)
         {
             _customerId = customerId;
