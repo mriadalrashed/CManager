@@ -1,4 +1,7 @@
-﻿// File-based JSON serialization using System.Text.Json.
+﻿// AI-assisted design discussion:
+// AI was used to discuss applying the Single Responsibility Principle (SRP)
+// by separating JSON serialization into a dedicated helper class.
+// File-based JSON serialization using System.Text.Json.
 // References (Microsoft Docs):
 // https://learn.microsoft.com/dotnet/standard/serialization/system-text-json-how-to#serialize-to-a-file
 // https://learn.microsoft.com/dotnet/standard/serialization/system-text-json-customize-properties
