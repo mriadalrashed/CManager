@@ -1,5 +1,14 @@
 ﻿namespace CManager.Core.Models
 {
+    /// <summary>
+    /// Represents a customer within the system.
+    /// This class stores basic customer information such as name,
+    /// email address, phone number, and address details.
+    /// It also provides simple validation methods to ensure
+    /// that required fields are filled and that the email address
+    /// is in a valid format.
+    /// </summary>
+
     public class Customer
     {
         public Guid Id { get; set; }
