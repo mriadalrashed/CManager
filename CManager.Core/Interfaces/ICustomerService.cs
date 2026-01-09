@@ -2,7 +2,17 @@
 
 namespace CManager.Core.Interfaces
 {
-    // Defines business operations related to customers
+    /// <summary>
+    /// Defines business operations related to customer management.
+    /// This interface represents the Service layer responsibility,
+    /// handling business rules, validation, and coordination between
+    /// the presentation layer and the data access layer.
+    /// </summary>
+    /// <remarks>
+    /// The service layer does not handle data persistence details.
+    /// It depends on repository abstractions and focuses only on
+    /// business logic and workflow orchestration.
+    /// </remarks>
     public interface ICustomerService
     {
         Customer CreateCustomer(Customer customer);
