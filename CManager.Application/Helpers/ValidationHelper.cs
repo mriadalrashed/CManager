@@ -1,12 +1,22 @@
-﻿using CManager.Core.Models;
+﻿// NOTE (AI Assistance Disclosure):
+// The documentation comments in this file were created with assistance from an AI tool.
+// CustomerValidator was introduced to apply the Single Responsibility Principle (SRP).
+// It centralizes all customer-related validation logic in one place,
+// avoiding duplication across services and controllers.
+// This improves code maintainability, readability, and testability.
+// Reference:
+// Microsoft Docs – ArgumentException
+// https://learn.microsoft.com/dotnet/api/system.argumentexception
+
+using CManager.Core.Models;
 
 namespace CManager.Application.Helpers
 {
     // Provides validation methods for Customer objects
-    public static class CusteomerValidator    
+    public static class CustomerValidator
     {
         // Validates that all required customer fields are provided
-        public static void validateRequiredFields(Customer customer)
+        public static void ValidateRequiredFields(Customer customer)
         {
             if (customer == null)
                 throw new ArgumentNullException(nameof(customer), "Customer object cannot be null.");
