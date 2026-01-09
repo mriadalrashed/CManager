@@ -2,7 +2,16 @@
 
 namespace CManager.Core.Interfaces
 {
-    // Defines data access operations for Customer entities
+    /// <summary>
+    /// Defines data access operations for Customer entities.
+    /// This interface represents the Repository layer responsibility,
+    /// providing an abstraction for customer persistence and retrieval.
+    /// </summary>
+    /// <remarks>
+    /// The repository is responsible only for data access logic such as
+    /// storing, retrieving, updating, and deleting customer data.
+    /// It does not contain business rules or validation logic.
+    /// </remarks>
     public interface ICustomerRepository
     {
         void Add(Customer customer);
