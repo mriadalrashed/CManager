@@ -1,9 +1,25 @@
-﻿using CManager.Core.Interfaces;
+﻿// AI-assisted design discussion:
+// AI was used to discuss applying the Repository Pattern
+// and the Single Responsibility Principle (SRP).
+// The repository is responsible only for data persistence,
+// while JSON serialization is delegated to JsonFileHelper.
+
+using System;
+using CManager.Core.Interfaces;
 using CManager.Core.Models;
 using CManager.Infrastructure.Data;
 
 namespace CManager.Infrastructure.Data
 {
+
+    /// <summary>
+    /// Repository responsible for managing customer persistence.
+    /// </summary>
+    /// <remarks>
+    /// This repository stores customer data in memory and persists
+    /// changes to a JSON file using JsonFileHelper.
+    /// It contains no business logic or validation rules.
+    /// </remarks>
     public class CustomerRepository : ICustomerRepository
     {
         // Stores customers in memory
@@ -42,11 +58,19 @@ namespace CManager.Infrastructure.Data
             return _customers.FirstOrDefault(c => c.Id == id);
         }
 
+
+        // AI-assisted clarification:
+        // AI helped explain how to compare strings in a case-insensitive way in C#
+        // using StringComparison.OrdinalIgnoreCase.
+        // Reference (Microsoft Docs):
+        // https://learn.microsoft.com/dotnet/api/system.stringcomparison
         public Customer? GetByEmail(string email)
         {
             return _customers.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
         }
 
+        // Updates an existing customer if found
+        // Returns false if the customer does not exist
         public bool Update(Customer customer)
         {
             var existingCustomer = GetById(customer.Id);
@@ -59,6 +83,7 @@ namespace CManager.Infrastructure.Data
             return true;
         }
 
+        // Removes a customer by unique identifier
         public bool Delete(Guid id)
         {
             var customer = GetById(id);
@@ -80,6 +105,8 @@ namespace CManager.Infrastructure.Data
             _customers.Remove(customer);
             return true;
         }
+
+        // Persists the current in-memory state to the JSON file
         public void SaveChanges()
         {
             JsonFileHelper.WriteToJsonFile(_filePath, _customers);
