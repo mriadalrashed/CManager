@@ -1,4 +1,35 @@
-﻿<UserControl x:Class="CManager.Presentation.GuiApp.Views.CustomerListView"
+﻿<!--
+AI DISCLOSURE & REFERENCES:
+Microsoft documentation was reviewed to understand WPF controls,
+data binding, and MVVM-based UI patterns.
+
+AI was used as a discussion aid to help clarify:
+- Binding collections to ListView using ItemsSource
+- Using GridView for tabular data presentation
+- Command binding for buttons in MVVM
+- Using BooleanToVisibilityConverter for progress indicators
+
+The XAML structure, layout, and bindings were written and adjusted by me.
+
+Purpose:
+This view displays a list of customers, supports selection,
+and allows refresh, edit, and delete operations via commands
+exposed by the CustomerListViewModel.
+
+References:
+Microsoft Docs – WPF Data Binding
+https://learn.microsoft.com/dotnet/desktop/wpf/data/data-binding-overview
+
+Microsoft Docs – ListView and GridView
+https://learn.microsoft.com/dotnet/desktop/wpf/controls/listview-overview
+
+Microsoft Docs – Commanding in WPF
+https://learn.microsoft.com/dotnet/desktop/wpf/advanced/commanding-overview
+-->
+
+
+<!-- View responsible for displaying and managing the customer list -->
+<UserControl x:Class="CManager.Presentation.GuiApp.Views.CustomerListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +39,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <UserControl.Resources>
+        <!-- Converts boolean values to Visibility for loading indicators -->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <!-- Shared button styling for consistent UI -->
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="10,5"/>
@@ -25,6 +58,7 @@
         </Grid.RowDefinitions>
         
         <!-- Header Section -->
+        <!-- Displays the title provided by the ViewModel -->
         <Border Grid.Row="0" Background="#007ACC" Padding="10">
             <TextBlock Text="{Binding Title}"
                     Foreground="White" 
@@ -33,11 +67,13 @@
         </Border>
 
         <!-- Status Section -->
+        <!-- Status message and loading indicator -->
         <Border Grid.Row="1" Background="#F0F0F0" Padding="10">
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBox Width="200" 
                          Text="{Binding StatusMessage}" FontStyle="Italic"/>
+                <!-- Visible only when IsBusy is true -->
                 <ProgressBar 
                     Width="100" 
                     Height="20" 
@@ -48,13 +84,15 @@
         </Border>
         
         <!-- Customer List Section -->
+        <!-- Displays customers in a tabular format using GridView -->
         <ListView Grid.Row="1"
                       Margin="0,35,20,21"
                       ItemsSource="{Binding Customers}"
                       SelectedItem="{Binding SelectedCustomer}"
                       Grid.RowSpan="2" >
                 <ListView.View>
-                    <GridView>
+                <!-- Defines columns for customer properties -->
+                <GridView>
                         <GridViewColumn Header="FirstName" Width="200" DisplayMemberBinding="{Binding FirstName}"/>
                         <GridViewColumn Header="LastName" Width="200" DisplayMemberBinding="{Binding LastName}"/>
                         <GridViewColumn Header="Email" Width="250" DisplayMemberBinding="{Binding Email}"/>
@@ -67,10 +105,14 @@
             </ListView>
              
              <!--Button-->
+            <!-- Action buttons bound to ViewModel commands -->
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10">
-                <Button Content="Refresh" Command="{Binding LoadCustomerCommand}"  Background="#4CAF50" Foreground="White"/>
-                <Button Content="Delete" Command="{Binding DeleteCustomerCommand}" Background="#F44366" Foreground="White"/>
-                <Button Content="Edit" Command="{Binding ViewDetailsCommand}" Background="#2196F3" Foreground="White"/>
+            <!-- Reloads customers from the service -->
+            <Button Content="Refresh" Command="{Binding LoadCustomerCommand}"  Background="#4CAF50" Foreground="White"/>
+            <!-- Deletes the selected customer -->
+            <Button Content="Delete" Command="{Binding DeleteCustomerCommand}" Background="#F44366" Foreground="White"/>
+            <!-- Navigates to edit selected customer -->
+            <Button Content="Edit" Command="{Binding ViewDetailsCommand}" Background="#2196F3" Foreground="White"/>
             </StackPanel>
     </Grid>
 </UserControl>
