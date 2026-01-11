@@ -1,0 +1,182 @@
+﻿<!--
+AI DISCLOSURE & REFERENCES:
+Microsoft documentation was reviewed to understand WPF layout controls,
+data binding, and command binding in MVVM-based applications.
+
+AI was used as a discussion aid to help clarify:
+- How data binding works between View and ViewModel
+- The purpose of UpdateSourceTrigger=PropertyChanged
+- Proper usage of ScrollViewer, Grid, and StackPanel in WPF forms
+
+The XAML structure and bindings were written and adjusted by me.
+
+Purpose:
+This view provides a form for creating and editing customer data,
+binding UI controls to CustomerDetailViewModel properties and commands.
+
+References:
+Microsoft Docs – WPF Data Binding
+https://learn.microsoft.com/dotnet/desktop/wpf/data/data-binding-overview
+
+Microsoft Docs – WPF Layout Panels
+https://learn.microsoft.com/dotnet/desktop/wpf/controls/panels-overview
+
+Microsoft Docs – Commands and MVVM
+https://learn.microsoft.com/dotnet/desktop/wpf/advanced/commanding-overview
+-->
+
+<!-- Root view for displaying and editing customer details -->
+<UserControl x:Class="CManager.Presentation.GuiApp.Views.CustomerDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CManager.Presentation.GuiApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Shared styles to keep UI consistent across buttons, labels, and inputs -->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Displays validation errors or success messages from the ViewModel -->
+        <TextBlock Grid.Row="0"
+                   Text="{Binding StatusMessage}" 
+                   FontStyle="Italic" 
+                   Foreground="Red" 
+                   Margin="0,5,0,5"/>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+ 
+        <StackPanel Grid.Row="1">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="First Name:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding FirstName,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Last Name:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding LastName,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Email:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding Email,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Phone Number:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding PhoneNumber,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Address:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding Address,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="City:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding City,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Street:" />
+                <TextBox Grid.Column="1"
+                         Text="{Binding Street,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Postal Code:"/>
+                <TextBox Grid.Column="1"
+                         Text="{Binding PostalCode,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+        </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <!-- Save command triggers validation and persistence logic in ViewModel -->
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Background="#4CAF50"
+                    Foreground="White"/>
+            <!-- Cancel command clears form and navigates back to list -->
+            <Button Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    Background="#9E9E9E"
+                    Foreground="White"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
