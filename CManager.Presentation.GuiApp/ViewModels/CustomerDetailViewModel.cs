@@ -1,4 +1,44 @@
-﻿using System;
+﻿// AI DISCLOSURE & REFERENCES:
+//
+// The implementation of this ViewModel follows the MVVM pattern
+// and uses CommunityToolkit.Mvvm for property change notification
+// and command handling.
+//
+// AI was used only to assist in writing and refining documentation
+// comments and to discuss architectural concepts such as MVVM,
+// command binding, and navigation patterns. The implementation logic
+// was written and understood by the author.
+//
+// Reasons & References:
+//
+// 1. MVVM Pattern:
+//    Used to separate UI (View) from presentation logic (ViewModel),
+//    improving testability and maintainability.
+//    Reference:
+//     https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm
+//
+// 2. ObservableObject (INotifyPropertyChanged):
+//    Enables automatic UI updates when ViewModel properties change.
+//    Reference:
+//    https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged
+//
+// 3. CommunityToolkit.Mvvm (ObservableProperty, RelayCommand):
+//    Reduces boilerplate code for properties and commands in MVVM.
+//    Reference:
+//    https://learn.microsoft.com/dotnet/communitytoolkit/mvvm/
+//
+// 4. Command-based interaction (RelayCommand):
+//    Used instead of code-behind event handlers to follow MVVM best practices.
+//    Reference:
+//    https://learn.microsoft.com/dotnet/desktop/wpf/advanced/commanding-overview
+//
+// 5. Navigation using ContentControl:
+//    Enables view switching without tight coupling between views.
+//    Reference:
+//    https://learn.microsoft.com/dotnet/api/system.windows.controls.contentcontrol
+
+
+using System;
 using System.Collections.ObjectModel;
 using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,6 +51,16 @@ using System.Windows.Media;
 
 namespace CManager.Presentation.GuiApp.ViewModels
 {
+
+    /// <summary>
+    /// ViewModel responsible for creating, editing, and displaying
+    /// details of a single customer in the GUI application.
+    /// </summary>
+    /// <remarks>
+    /// This ViewModel follows the MVVM pattern using CommunityToolkit.Mvvm.
+    /// It coordinates between the UI (View), the business logic (CustomerService),
+    /// and navigation logic (NavigationService).
+    /// </remarks>
     public partial class CustomerDetailViewModel : BaseViewModel
     {
         private readonly CustomerService _customerService;
@@ -41,7 +91,15 @@ namespace CManager.Presentation.GuiApp.ViewModels
         [ObservableProperty]
         private string _postalCode = string.Empty;
 
-        //initializes a new instance of the CustomerDetailViewModel class.
+        /// <summary>
+        /// Initializes a new instance of the CustomerDetailViewModel.
+        /// </summary>
+        /// <param name="customerService">
+        /// Service used to perform business operations related to customers.
+        /// </param>
+        /// <param name="navigationService">
+        /// Service responsible for navigating between views.
+        /// </param>
         public CustomerDetailViewModel(CustomerService customerService, NavigationService navigationService)
         {
             _customerService = customerService;
@@ -49,8 +107,14 @@ namespace CManager.Presentation.GuiApp.ViewModels
             Title = "Customer Details";
         }
 
-        // load customer Data for  editing
-
+        /// <summary>
+        /// Loads customer data for either creating a new customer
+        /// or editing an existing one.
+        /// </summary>
+        /// <param name="customerId">
+        /// The unique identifier of the customer.
+        /// If Guid.Empty, the ViewModel switches to create mode.
+        /// </param>
         [RelayCommand]
         public void LoadCustomer(Guid customerId)
         {
@@ -67,6 +131,10 @@ namespace CManager.Presentation.GuiApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Loads an existing customer from the service
+        /// and populates the ViewModel properties.
+        /// </summary>
         public void LoadExisttingCustomer()
         {
             try
@@ -99,7 +167,11 @@ namespace CManager.Presentation.GuiApp.ViewModels
             }
         }
 
-        //saves the customer data
+        /// <summary>
+        /// Saves the customer data.
+        /// Creates a new customer if no ID exists,
+        /// otherwise updates the existing customer.
+        /// </summary>
         [RelayCommand]
 
         private void Save()
@@ -165,7 +237,10 @@ namespace CManager.Presentation.GuiApp.ViewModels
             }
         }
 
-        //cancel the operation 
+        /// <summary>
+        /// Cancels the current operation,
+        /// clears the form, and navigates back to the customer list.
+        /// </summary>
         [RelayCommand]
         private void Cancel()
         {
@@ -173,7 +248,10 @@ namespace CManager.Presentation.GuiApp.ViewModels
             _navigationService.NavigateToCustomerList();
         }
 
-        //clears the form fields
+        /// <summary>
+        /// Clears all input fields in the form.
+        /// Used when creating a new customer or cancelling an operation.
+        /// </summary>
         private void ClearForm()
         {
             FirstName = string.Empty;
@@ -186,7 +264,13 @@ namespace CManager.Presentation.GuiApp.ViewModels
             PostalCode = string.Empty;
         }
 
-        //validates the input fields
+        /// <summary>
+        /// Validates that all required input fields are filled.
+        /// Displays an error message if validation fails.
+        /// </summary>
+        /// <returns>
+        /// True if all required fields are valid; otherwise false.
+        /// </returns>
         private bool ValidateInput()
         {
             if (string.IsNullOrWhiteSpace(FirstName))
