@@ -1,4 +1,19 @@
-﻿using CManager.Application.Services;
+﻿// AI DISCLOSURE & REFERENCES:
+// Microsoft documentation was reviewed to understand MVVM patterns,
+// ObservableCollection usage, and command handling with CommunityToolkit.Mvvm.
+//
+// AI was used as a discussion aid to help structure documentation comments
+// and clarify best practices for ViewModel responsibilities, commands,
+// and UI state handling (IsBusy, SelectedItem patterns).
+//
+// Purpose:
+// This ViewModel manages customer list presentation logic,
+// including loading, deleting, and navigating to customer details,
+// following MVVM and separation of concerns.
+
+
+
+using CManager.Application.Services;
 using CManager.Core.Models;
 using CManager.Presentation.GuiApp.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,6 +24,11 @@ using System.Net;
 
 namespace CManager.Presentation.GuiApp.ViewModels
 {
+    /// <summary>
+    /// ViewModel responsible for displaying and managing a list of customers.
+    /// Handles loading customers, deleting a selected customer,
+    /// and navigating to customer details.
+    /// </summary>
     public partial class CustomerListViewModel : BaseViewModel
     {
         private readonly CustomerService _customerService;
@@ -34,6 +54,10 @@ namespace CManager.Presentation.GuiApp.ViewModels
             //load customers from the service
             LoadCustomer();
         }
+
+        // AI note:
+        // AI was used to clarify how ObservableCollection automatically updates the UI
+        // when items are added or removed.
 
         //load all customers from the service
         [RelayCommand]
