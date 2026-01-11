@@ -1,4 +1,24 @@
-﻿using System;
+﻿// AI DISCLOSURE & REFERENCE:
+// The decision to add repository-level tests was made after
+// reviewing Microsoft documentation regarding testing data access layers
+// and file-based persistence.
+//
+// AI was used as a discussion aid to better understand the concepts
+// described in the documentation, not to generate the code.
+//
+// Purpose:
+// These tests validate real JSON file persistence and data access behavior,
+// which cannot be verified using mocked repositories.
+//
+// References:
+// Microsoft Docs – Unit testing in .NET
+// https://learn.microsoft.com/dotnet/core/testing/
+// Microsoft Docs – IDisposable Interface
+// https://learn.microsoft.com/dotnet/api/system.idisposable
+
+
+
+using System;
 using System.IO;
 using System.Linq;
 using CManager.Core.Models;
@@ -7,6 +27,12 @@ using Xunit;
 
 namespace CManager.Tests.UnitTests
 {
+    // This test class verifies the behavior of the CustomerRepository,
+    // focusing on real file-based JSON persistence and data access logic.
+    // IDisposable is implemented to ensure proper cleanup of temporary
+    // test files after each test run, maintaining test isolation and
+    // preventing side effects between tests.
+
     public class CustomerRepositoryTests : IDisposable
     {
         // Path for a temporary JSON file used during testing

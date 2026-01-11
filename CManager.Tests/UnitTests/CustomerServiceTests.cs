@@ -1,4 +1,20 @@
-﻿using CManager.Application.Services;
+﻿// AI DISCLOSURE & REFERENCE:
+// Microsoft documentation was reviewed to understand how to unit test
+// service-layer logic using mocked dependencies.
+//
+// AI was used to clarify how mocking frameworks (Moq) are applied
+// when testing services that depend on repositories.
+//
+// Purpose:
+// These tests verify business logic behavior in isolation,
+// without relying on file system or persistence logic.
+//
+// References:
+// Microsoft Docs – Unit testing best practices
+// https://learn.microsoft.com/dotnet/core/testing/unit-testing-best-practices
+
+
+using CManager.Application.Services;
 using CManager.Core.Interfaces;
 using CManager.Core.Models;
 using Moq;
@@ -30,6 +46,7 @@ namespace CManager.Tests.UnitTests
             _customerService = new CustomerService(_mockRepository.Object);
         }
 
+        // AI note: AI was used to discuss testing concepts and mocking strategy.
         [Fact]
         public void CreateCustomer_WithValidData_ShouldCreateCustomer()
         {
